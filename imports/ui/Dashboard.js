@@ -2,6 +2,7 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 
 import PrivateHeader from './PrivateHeader';
+import NoteList from './NoteList';
 
 export default class Link extends React.Component {
     componentWillMount() {
@@ -15,6 +16,7 @@ export default class Link extends React.Component {
           <PrivateHeader title="Dashboard"/>
           <div className="page-content">
             dashboard page content
+            <NoteList/>
           </div>
         </div>
       )
