@@ -15,7 +15,6 @@ export default class Link extends React.Component {
         <div>
           <PrivateHeader title="Dashboard"/>
           <div className="page-content">
-            dashboard page content
             <NoteList/>
           </div>
         </div>
