@@ -21,3 +21,4 @@ accounts-password
 session
 fourseven:scss@=4.9.0
 cultofcoders:mocha
+react-meteor-data
