@@ -1,36 +1,29 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-router-dom';
 
 import PrivateHeader from './PrivateHeader';
 import NoteList from './NoteList';
 import Editor from './Editor';
 
-class Dashboard extends React.Component {
+export class Dashboard extends React.Component {
     constructor(props) {
-      super(props);
-    }
-
-    componentDidMount() {
-      if (!Meteor.userId() && this.props.match.params.id) {
-        this.props.history.replace('/login');
-      };
+      super(props)
     }
 
     componentWillMount() {
       if (Meteor.userId()) {
         Session.set('selectedNoteId', this.props.match.params.id);
       } else {
-        if (this.props.match.params.id) {
-          this.props.history.replace('/login');
-        }
+        this.props.history.replace('/login');
       }
     }
-
-    componentWillReceiveProps() {
-      if (!Meteor.userId()) {
-        this.props.history.replace('/login');
-      };
+    componentDidUpdate(prevProps,nextProps) {
+      if (this.props != nextProps) {
+        if (!Meteor.userId()) {
+          prevProps.history.replace({ pathname: '/login' });
+        }
+      }
     }
 
     render() {
@@ -46,4 +39,4 @@ class Dashboard extends React.Component {
     }
   }
 
-  export default withRouter(Dashboard);
+export default withRouter(Dashboard)
