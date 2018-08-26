@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { withRouter } from 'react-router-dom';
+import { withTracker } from 'meteor/react-meteor-data';
+import PropTypes from 'prop-types';
 
 import PrivateHeader from './PrivateHeader';
 import NoteList from './NoteList';
@@ -12,18 +13,16 @@ export class Dashboard extends React.Component {
     }
 
     componentWillMount() {
-      if (Meteor.userId()) {
+      if (this.props.user) {
         Session.set('selectedNoteId', this.props.match.params.id);
       } else {
         this.props.history.replace('/login');
       }
     }
-    componentDidUpdate(prevProps,nextProps) {
-      if (this.props != nextProps) {
-        if (!Meteor.userId()) {
-          prevProps.history.replace({ pathname: '/login' });
+    componentDidUpdate(prevProps) {
+        if (!this.props.user) {
+          this.props.history.replace({ pathname: '/login' });
         }
-      }
     }
 
     render() {
@@ -39,4 +38,10 @@ export class Dashboard extends React.Component {
     }
   }
 
-export default withRouter(Dashboard)
+Dashboard.propTypes = {
+    user: PropTypes.bool.isRequired
+};
+
+export default withTracker(() => {
+  return { user: !!Meteor.userId() }
+})(Dashboard);
