@@ -4,8 +4,16 @@
 }
 
 .header__content {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  height: $header-height;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   max-width: $site-max-width;
   margin: 0 auto;
   padding: $space;
@@ -13,4 +21,14 @@
 
 .header__title {
   margin: 0;
+}
+
+.header__nav-toggle {
+  cursor: pointer;
+  height: 2rem;
+  width: 2rem;
+
+  @include desktop {
+    display: none;
+  }
 }

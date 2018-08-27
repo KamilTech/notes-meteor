@@ -1,8 +1,13 @@
 .boxed-view {
-  align-items: center;
-  background: $boxed-view-overlay-bg;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   height: 100vh;
   width: 100vw;
 }
@@ -18,12 +23,24 @@
 
 .boxed-view__box {
   background-color: $boxed-view-bg;
+  border: none;
   padding: 2.4rem;
   text-align: center;
-  width: 24rem;
+  width: 28rem;
+  -webkit-box-shadow: 0 20px 30px 0 rgba(0,0,0,.1);
+          box-shadow: 0 20px 30px 0 rgba(0,0,0,.1);
+}
+
+.boxed-view__title {
+  font-weight: 700;
 }
 
 .boxed-view__form {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }

@@ -8,6 +8,16 @@
   margin-bottom: $space;
   padding: $input-spacing;
   text-transform: uppercase;
+  border-radius: 50px;
+  -webkit-transition: all .3s ease-out;
+  transition: all .3s ease-out;
+}
+
+.button:hover {
+  -webkit-box-shadow: 0 18px 32px 0 rgba(0,0,0,.05);
+          box-shadow: 0 18px 32px 0 rgba(0,0,0,.05);
+  -webkit-transition: all .3s ease-out;
+  transition: all .3s ease-out;
 }
 
 .button--link {
@@ -24,15 +34,30 @@
 }
 
 .button--secondary {
-  background: $button-secondary-bg;
-  border: 1px solid $button-secondary-border-color;
-  color: $button-secondary-color;
+  padding: 13px 35px 12px;
+  line-height: 14px;
+  color: $body-default-color;
+  -webkit-transition: all .3s ease-out;
+  transition: all .3s ease-out;
+  background-color: #fff;
+  border: 2px solid #e5e5e5;
+  font-weight: 700;
+  text-transform: none;
+}
+
+.button--secondary:hover {
+  background-color: $brand-primary;
+  border-color: $brand-primary;
+  -webkit-transition: all .3s ease-out;
+  transition: all .3s ease-out;
+  color: white;
 }
 
 .button--link-text {
-  background: none;
+  background: white;
   margin: 0;
-  padding: 0;
-  text-decoration: underline;
+  padding: 9px 17.5px 8px;
   text-transform: none;
+  color: $brand-primary;
+  font-weight: 700;
 }
