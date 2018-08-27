@@ -41,4 +41,12 @@ input[type=text], input[type=email], input[type=password], textarea {
   font-family: $body-default-font-family;
   margin-bottom: $space;
   padding: $input-spacing;
+  outline: none;
+}
+
+button:disabled {
+  background: #7ec29dc5;;
+  filter: blur(.5px);
+  -webkit-filter: blur(.5px);
+  cursor: not-allowed;
 }
