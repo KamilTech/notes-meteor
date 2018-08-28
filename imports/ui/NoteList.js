@@ -10,16 +10,30 @@ import NoteListItem from './NoteListItem';
 import NoteListEmptyItem from './NoteListEmptyItem';
 
 export const NoteList = (props) => {
-
     const mapNote = (notes) => {
         return notes.map((note) => {
             return <NoteListItem key={note._id} note={note}/>
         });
     }
 
+    const searchHandler = (e) => {
+        const value = e.target.value;
+
+        function escapeRegExp(stringToGoIntoTheRegex) {
+            return stringToGoIntoTheRegex.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+        }
+        const stringToGoIntoTheRegex = escapeRegExp(e.target.value);
+        const regex = new RegExp("^" + stringToGoIntoTheRegex);
+        search = { title: regex };
+        props.Session.set('Search', search);
+    }
+
     return (
         <div className="item-list">
             <NoteListHeader/>
+            <div className="searchButton">
+                <input onChange={searchHandler} type="text" placeholder="Search..." name="search"></input>
+            </div>
             <div>
                 { props.notes.length !== 0 ? mapNote(props.notes) : <NoteListEmptyItem/> }
             </div>
@@ -31,12 +45,14 @@ NoteList.propTypes = {
     notes: PropTypes.array.isRequired
 }
 
-export default withTracker(() => {
+export default withTracker((props) => {
     const selectedNoteId = Session.get('selectedNoteId');
+    const searchValue = Session.get('Search');
     Meteor.subscribe('notes');
 
     return {
-        notes: Notes.find({}, {
+        Session,
+        notes: Notes.find( searchValue ,{
             sort: {
                 updatedAt: -1
             }
