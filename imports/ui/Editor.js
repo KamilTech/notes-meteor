@@ -31,6 +31,7 @@ export class Editor extends React.Component {
     handleRemoval() {
         this.props.call('notes.remove', this.props.note._id);
         const history = createHistory();
+        Session.set('selectedNoteId', undefined);
         history.push('/dashboard');
     }
 
